@@ -35,6 +35,13 @@ DriveBase クラス
 ## 走行開始
 ev3.speaker.beep()          # ビープ音を鳴らす
 
+"""
+# is_all_green()
+## 左右モーターの現在の角度を取得して緑ライトを点灯していいかチェックする関数
+## パラメータ
+- l_angle: left rotate angle (int)
+- r_angle: right rotate angle (int)
+"""
 def is_all_green(l_angle, r_angle):
     if 0 <= l_angle < 720 and 0 <= r_angle:
         return True
@@ -52,10 +59,10 @@ while True:
     ev3.screen.draw_text(200, 50, f"{r_angle}")
     
     if is_all_green(l_angle, r_angle):
-        ev3.light.on(Color.GREEN)
-        wait(50)        # 0.05 秒点灯継続
-        ev3.light.off()
+        ev3.light.on(Color.GREEN)       # 緑色のステータスライトを点灯させる
+        wait(50)                        # 0.05 秒点灯継続
+        ev3.light.off()                 # 点滅させるためにライト消灯
     else:
-        ev3.light.on(Color.RED)
-        wait(50)        # 0.05 秒点灯継続
-        ev3.light.off()
+        ev3.light.on(Color.RED)         # 赤色のステータスライトを点灯させる
+        wait(50)                        # 0.05 秒点灯継続
+        ev3.light.off()                 # 点滅させるためにライト消灯
