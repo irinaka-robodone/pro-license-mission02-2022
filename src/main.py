@@ -19,10 +19,10 @@ ev3 = EV3Brick()
 # Write your program here.
 
 ## 走行体の設定
-color_sensor= ColorSensor(Port.S3)          # カラーセンサー定義
-ultra_sensor = UltrasonicSensor(Port.S1)    # 超音波センサー定義
-left_motor = Motor(Port.B)                        # ２輪走行体用左モーター定義
-right_motor = Motor(Port.C)                       # ２輪走行体用右モーター定義
+# color_sensor= ColorSensor(Port.S3)          # カラーセンサー定義
+# ultra_sensor = UltrasonicSensor(Port.S1)    # 超音波センサー定義
+left_motor = Motor(Port.A)                        # ２輪走行体用左モーター定義
+right_motor = Motor(Port.B)                       # ２輪走行体用右モーター定義
 robot = DriveBase(left_motor, right_motor, 55, 135)     # 長さの単位は mm
 """
 DriveBase クラス
@@ -45,19 +45,21 @@ ev3.speaker.beep()          # ビープ音を鳴らす
 def is_all_green(l_angle, r_angle):
     if 0 <= l_angle < 720 and 0 <= r_angle:
         return True
-    else: 
+    else:
         return False
 
 
 while True:
     l_angle = left_motor.angle()
     r_angle = right_motor.angle()
-    
+
+    ev3.screen.clear()                  # ディスプレイの描画をクリア
+
     ev3.screen.draw_text(10, 10, "left")
     ev3.screen.draw_text(100, 10, "right")
-    ev3.screen.draw_text(10, 50, f"{l_angle}")
-    ev3.screen.draw_text(200, 50, f"{r_angle}")
-    
+    ev3.screen.draw_text(10, 50, l_angle)
+    ev3.screen.draw_text(100, 50, r_angle)
+
     if is_all_green(l_angle, r_angle):
         ev3.light.on(Color.GREEN)       # 緑色のステータスライトを点灯させる
         wait(50)                        # 0.05 秒点灯継続
