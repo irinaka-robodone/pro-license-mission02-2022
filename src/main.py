@@ -62,7 +62,9 @@ while True:
         ev3.light.on(Color.GREEN)       # 緑色のステータスライトを点灯させる
         wait(50)                        # 0.05 秒点灯継続
         ev3.light.off()                 # 点滅させるためにライト消灯
+        wait(50)
     else:
         ev3.light.on(Color.RED)         # 赤色のステータスライトを点灯させる
         wait(50)                        # 0.05 秒点灯継続
         ev3.light.off()                 # 点滅させるためにライト消灯
+        wait(50)
